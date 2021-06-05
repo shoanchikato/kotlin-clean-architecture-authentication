@@ -1,7 +1,7 @@
 package zw.co.blu.repository.roles
 
 import zw.co.blu.model.Role
-import zw.co.blu.requestState.RequestResult
+import zw.co.blu.requestResult.RequestResult
 
 interface RoleRepository {
     suspend fun createRole(role: Role): RequestResult

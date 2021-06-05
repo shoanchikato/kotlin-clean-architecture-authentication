@@ -1,4 +1,4 @@
-package zw.co.blu.requestState
+package zw.co.blu.requestResult
 
 sealed class RequestResult {
     data class Success<T>(val value: T): RequestResult()

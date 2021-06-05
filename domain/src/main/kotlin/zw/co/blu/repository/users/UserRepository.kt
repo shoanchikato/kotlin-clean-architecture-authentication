@@ -1,7 +1,7 @@
 package zw.co.blu.repository.users
 
 import zw.co.blu.model.User
-import zw.co.blu.requestState.RequestResult
+import zw.co.blu.requestResult.RequestResult
 
 interface UserRepository {
     suspend fun createUser(user: User): RequestResult
