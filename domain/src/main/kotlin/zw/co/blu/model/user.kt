@@ -4,7 +4,7 @@ package zw.co.blu.model
  * @property username eg. "john_doe"
  * @property hash eg. BCRYPT HASH CODE
  * @property email eg. "john_doe@company.com"
- * @property status eg. "ACTIVE"
+ * @property userStatus eg. "ACTIVE"
  * @property role eg.
  *
  * {
@@ -19,4 +19,4 @@ package zw.co.blu.model
  *      }
  * }
  */
-data class User(val username: String, val hash: String, val email: String, val status: Status, val role: Role)
+data class User(val username: String, val hash: String, val email: String, val userStatus: UserStatus, val role: Role)

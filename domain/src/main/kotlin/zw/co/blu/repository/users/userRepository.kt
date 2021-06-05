@@ -6,8 +6,8 @@ import zw.co.blu.requestState.RequestResult
 interface UserRepository {
     suspend fun createUser(user: User): RequestResult
     suspend fun editUser(user: User): RequestResult
-    suspend fun activate(user: User): RequestResult
-    suspend fun inactivate(user: User): RequestResult
-    suspend fun suspend(user: User): RequestResult
-    suspend fun ban(user: User): RequestResult
+    suspend fun activateUser(user: User): RequestResult
+    suspend fun deactivateUser(user: User): RequestResult
+    suspend fun suspendUser(user: User): RequestResult
+    suspend fun banUser(user: User): RequestResult
 }

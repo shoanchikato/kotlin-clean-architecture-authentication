@@ -1,6 +1,6 @@
 package zw.co.blu.model
 
-sealed class Status {
+sealed class UserStatus {
     data class Active(val value: String = "ACTIVE")
     data class Inactive(val value: String = "INACTIVE")
     data class Pending(val value: String = "PENDING")
