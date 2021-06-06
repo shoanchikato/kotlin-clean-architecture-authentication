@@ -22,11 +22,11 @@ package zw.co.blu.model
  * }
  */
 
-data class User(
-        val id: String,
-        val username: String,
-        val hash: String,
-        val email: String,
-        val userStatus: UserStatus,
-        val role: Role,
+data class UserDao(
+        val id: String?,
+        val username: String?,
+        val hash: String?,
+        val email: String?,
+        val userStatus: UserStatus?,
+        val role: Role?,
 )

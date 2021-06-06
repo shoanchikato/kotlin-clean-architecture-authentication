@@ -1,8 +1,8 @@
 package zw.co.blu.model
 
 /**
- * @property username eg. "john_doe"
- * @property password eg. "eA%J23^$SAD"
+ * @property username eg "john_doe"
+ * @property password eg "eA%J23^$SAD"
  *
  * must be equal or greater than 8 characters
  * must be alphanumeric
