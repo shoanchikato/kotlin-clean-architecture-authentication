@@ -5,11 +5,12 @@ package zw.co.blu.model
  * @property roleStatus eg "ACTIVE"
  * @property permissions eg
  *
+ * ```json
  * [
  *  {   "name": "BOOKS",
  *      "abilities": [
  *          "READ",
- *          "WRITE"
+ *          "EDIT"
  *      ]
  *  },
  *  {   "name": "TASKS",
@@ -18,6 +19,7 @@ package zw.co.blu.model
  *      ]
  *  }
  * ]
+ * ```
  */
 data class Role(
         val name: String,

@@ -3,7 +3,7 @@ package zw.co.blu.model
 /**
  * @property name eg "BOOKS"
  * @property permissionStatus eg "ACTIVE"
- * @property abilities eg ["READ", "WRITE"]
+ * @property abilities eg ["READ", "EDIT"]
  */
 data class Permission(
         val name: String,

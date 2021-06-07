@@ -8,6 +8,7 @@ package zw.co.blu.model
  * @property userStatus eg "ACTIVE"
  * @property role eg
  *
+ * ```json
  * {
  *  "name": "ADMIN",
  *  "permissions": [
@@ -15,11 +16,12 @@ package zw.co.blu.model
  *          "name": "BOOKS",
  *          "abilities": [
  *              "READ",
- *              "WRITE"
+ *              "EDIT"
  *          ]
  *      }
  *  ]
  * }
+ * ```
  */
 
 data class User(
