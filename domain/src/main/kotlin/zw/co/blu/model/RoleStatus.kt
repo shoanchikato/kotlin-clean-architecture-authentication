@@ -1,6 +1,13 @@
 package zw.co.blu.model
 
 sealed class RoleStatus {
-    data class Active(val value: String = "ACTIVE")
-    data class Inactive(val value: String = "INACTIVE")
+    object ACTIVE: RoleStatus()
+    object INACTIVE: RoleStatus()
+
+    override fun toString(): String {
+        return when(this) {
+            is ACTIVE -> "ACTIVE"
+            is INACTIVE -> "INACTIVE"
+        }
+    }
 }

@@ -1,12 +1,25 @@
 package zw.co.blu.model
 
 sealed class Ability {
-    data class Create(val value: String = "CREATE") : Ability()
-    data class Read(val value: String = "READ") : Ability()
-    data class Edit(val value: String = "EDIT") : Ability()
-    data class Delete(val value: String = "DELETE") : Ability()
-    data class Activate(val value: String = "ACTIVATE") : Ability()
-    data class Deactivate(val value: String = "DEACTIVATE") : Ability()
-    data class Suspend(val value: String = "SUSPEND") : Ability()
-    data class Ban(val value: String = "BAN") : Ability()
+    object CREATE: Ability()
+    object READ: Ability()
+    object EDIT: Ability()
+    object DELETE: Ability()
+    object ACTIVATE: Ability()
+    object DEACTIVATE: Ability()
+    object SUSPEND: Ability()
+    object BAN: Ability()
+
+    override fun toString(): String {
+        return when(this) {
+            is CREATE -> "CREATE"
+            is READ -> "READ"
+            is EDIT -> "EDIT"
+            is DELETE -> "DELETE"
+            is ACTIVATE -> "ACTIVATE"
+            is DEACTIVATE -> "DEACTIVATE"
+            is SUSPEND -> "SUSPEND"
+            is BAN -> "BAN"
+        }
+    }
 }

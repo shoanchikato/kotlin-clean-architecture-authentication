@@ -1,9 +1,20 @@
 package zw.co.blu.model
 
 sealed class UserStatus {
-    data class Active(val value: String = "ACTIVE")
-    data class Inactive(val value: String = "INACTIVE")
-    data class Pending(val value: String = "PENDING")
-    data class Suspended(val value: String = "SUSPENDED")
-    data class Banned(val value: String = "BANNED")
+    object ACTIVE: UserStatus()
+    object INACTIVE: UserStatus()
+    object PENDING: UserStatus()
+    object SUSPENDED: UserStatus()
+    object BANNED: UserStatus()
+
+    override fun toString(): String {
+        return when(this) {
+            is ACTIVE -> "ACTIVE"
+            is INACTIVE -> "INACTIVE"
+            is PENDING -> "PENDING"
+            is SUSPENDED -> "SUSPENDED"
+            is SUSPENDED -> "SUSPENDED"
+            is BANNED -> "BANNED"
+        }
+    }
 }

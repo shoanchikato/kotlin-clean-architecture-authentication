@@ -1,6 +1,13 @@
 package zw.co.blu.model
 
 sealed class PermissionStatus {
-    data class Active(val value: String = "ACTIVE")
-    data class Inactive(val value: String = "INACTIVE")
+    object ACTIVE: PermissionStatus()
+    object INACTIVE: PermissionStatus()
+
+    override fun toString(): String {
+        return when(this) {
+            is ACTIVE -> "ACTIVE"
+            is INACTIVE -> "INACTIVE"
+        }
+    }
 }

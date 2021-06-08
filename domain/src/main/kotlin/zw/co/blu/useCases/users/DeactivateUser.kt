@@ -1,10 +1,11 @@
 package zw.co.blu.useCases.users
 
-import zw.co.blu.repository.users.UserRepository
+import zw.co.blu.model.User
+import zw.co.blu.service.users.UserService
 import zw.co.blu.requestResult.RequestResult
 
-class DeactivateUser(private val userRepository: UserRepository) {
-    suspend operator fun invoke(id: String): RequestResult {
-        return userRepository.deactivateUser(id)
+class DeactivateUser(private val userService: UserService) {
+    suspend operator fun invoke(id: String): RequestResult<User> {
+        return userService.deactivateUser(id)
     }
 }
