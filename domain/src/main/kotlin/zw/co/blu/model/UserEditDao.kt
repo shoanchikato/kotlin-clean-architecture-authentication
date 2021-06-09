@@ -9,10 +9,10 @@ package zw.co.blu.model
  *
  */
 
-data class User(
-        val id: String,
-        val username: String,
-        val email: String,
-        val userStatus: UserStatus,
-        val roleId: String,
+data class UserEditDao(
+        val id: String?,
+        val username: String?,
+        val email: String?,
+        val userStatus: UserStatus?,
+        val roleId: String?,
 )

@@ -5,7 +5,5 @@ import zw.co.blu.requestResult.RequestResult
 
 interface TokensService {
     suspend fun createRefreshToken(refreshToken: String): RequestResult<Tokens>
-    suspend fun refreshTokensCleanUpCronJob(): Unit
-    suspend fun saveRefreshToken(refreshToken: String): RequestResult<Tokens>
-    suspend fun deleteRefreshToken(refreshToken: String): RequestResult<Boolean>
+    suspend fun refreshTokensCleanUpCronJob(): RequestResult<Unit>
 }

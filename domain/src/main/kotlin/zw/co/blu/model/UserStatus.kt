@@ -13,7 +13,6 @@ sealed class UserStatus {
             is INACTIVE -> "INACTIVE"
             is PENDING -> "PENDING"
             is SUSPENDED -> "SUSPENDED"
-            is SUSPENDED -> "SUSPENDED"
             is BANNED -> "BANNED"
         }
     }

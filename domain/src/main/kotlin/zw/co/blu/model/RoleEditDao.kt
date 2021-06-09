@@ -22,9 +22,9 @@ package zw.co.blu.model
  * ]
  * ```
  */
-data class Role(
-        val id: String,
-        val name: String,
-        val roleStatus: RoleStatus,
-        val permissions: List<Permission>,
+data class RoleEditDao(
+        val id: String?,
+        val name: String?,
+        val roleStatus: RoleStatus?,
+        val permissions: List<Permission>?,
 )
