@@ -1,6 +1,6 @@
 package zw.co.blu.repository.permissions
 
-import zw.co.blu.model.Permission
+import zw.co.blu.model.permissions.Permission
 import zw.co.blu.requestResult.RequestResult
 
 interface PermissionRepository {

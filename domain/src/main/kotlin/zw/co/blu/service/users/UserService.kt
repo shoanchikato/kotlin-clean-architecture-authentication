@@ -1,8 +1,8 @@
 package zw.co.blu.service.users
 
-import zw.co.blu.model.User
-import zw.co.blu.model.UserDao
-import zw.co.blu.model.UserEditDao
+import zw.co.blu.model.users.User
+import zw.co.blu.model.users.UserDao
+import zw.co.blu.model.users.UserEditDao
 import zw.co.blu.requestResult.RequestResult
 
 interface UserService {

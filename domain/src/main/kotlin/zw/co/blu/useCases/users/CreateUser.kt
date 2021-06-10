@@ -1,7 +1,7 @@
 package zw.co.blu.useCases.users
 
-import zw.co.blu.model.User
-import zw.co.blu.model.UserDao
+import zw.co.blu.model.users.User
+import zw.co.blu.model.users.UserDao
 import zw.co.blu.requestResult.RequestResult
 import zw.co.blu.service.users.UserService
 

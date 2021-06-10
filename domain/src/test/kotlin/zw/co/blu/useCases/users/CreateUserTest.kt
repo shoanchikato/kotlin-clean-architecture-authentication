@@ -6,7 +6,9 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import zw.co.blu.model.*
+import zw.co.blu.model.users.User
+import zw.co.blu.model.users.UserDao
+import zw.co.blu.model.users.UserStatus
 import zw.co.blu.requestResult.RequestResult
 import zw.co.blu.service.users.UserService
 

@@ -1,6 +1,6 @@
 package zw.co.blu.repository.tokens
 
-import zw.co.blu.model.Tokens
+import zw.co.blu.model.tokens.Tokens
 import zw.co.blu.requestResult.RequestResult
 
 interface TokensRepository {

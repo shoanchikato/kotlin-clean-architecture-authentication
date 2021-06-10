@@ -6,7 +6,12 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import zw.co.blu.model.*
+import zw.co.blu.model.abilities.Ability
+import zw.co.blu.model.permissions.Permission
+import zw.co.blu.model.permissions.PermissionStatus
+import zw.co.blu.model.roles.Role
+import zw.co.blu.model.roles.RoleDao
+import zw.co.blu.model.roles.RoleStatus
 import zw.co.blu.requestResult.RequestResult
 import zw.co.blu.service.roles.RoleService
 

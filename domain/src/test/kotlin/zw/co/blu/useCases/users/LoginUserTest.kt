@@ -6,8 +6,8 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import zw.co.blu.model.Credentials
-import zw.co.blu.model.Tokens
+import zw.co.blu.model.credentials.Credentials
+import zw.co.blu.model.tokens.Tokens
 import zw.co.blu.requestResult.RequestResult
 import zw.co.blu.service.authentication.AuthenticationService
 

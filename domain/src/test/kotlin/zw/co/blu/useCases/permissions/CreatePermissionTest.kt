@@ -6,8 +6,8 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
-import zw.co.blu.model.Permission
-import zw.co.blu.model.PermissionStatus
+import zw.co.blu.model.permissions.Permission
+import zw.co.blu.model.permissions.PermissionStatus
 import zw.co.blu.requestResult.RequestResult
 import zw.co.blu.service.permissions.PermissionService
 import java.lang.Exception

@@ -1,7 +1,7 @@
 package zw.co.blu.service.authentication
 
-import zw.co.blu.model.Credentials
-import zw.co.blu.model.Tokens
+import zw.co.blu.model.credentials.Credentials
+import zw.co.blu.model.tokens.Tokens
 import zw.co.blu.requestResult.RequestResult
 
 interface AuthenticationService {
