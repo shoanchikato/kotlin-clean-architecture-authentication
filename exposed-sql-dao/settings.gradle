@@ -8,3 +8,4 @@
  */
 
 rootProject.name = 'exposed-sql-dao'
+include ':domain'

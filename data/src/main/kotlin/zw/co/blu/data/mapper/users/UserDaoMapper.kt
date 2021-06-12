@@ -1,6 +1,6 @@
 package zw.co.blu.data.mapper.users
 
-import Mapper
+import zw.co.blu.data.mapper.Mapper
 import zw.co.blu.data.model.users.UserDaoEntity
 import zw.co.blu.domain.model.users.UserDao
 

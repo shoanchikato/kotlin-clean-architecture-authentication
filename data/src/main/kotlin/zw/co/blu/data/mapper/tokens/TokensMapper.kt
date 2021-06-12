@@ -1,6 +1,6 @@
 package zw.co.blu.data.mapper.tokens
 
-import Mapper
+import zw.co.blu.data.mapper.Mapper
 import zw.co.blu.data.model.tokens.TokensEntity
 import zw.co.blu.domain.model.tokens.Tokens
 

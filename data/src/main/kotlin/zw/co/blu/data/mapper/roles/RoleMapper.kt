@@ -1,6 +1,6 @@
 package zw.co.blu.data.mapper.roles
 
-import Mapper
+import zw.co.blu.data.mapper.Mapper
 import zw.co.blu.data.mapper.permission.PermissionMapper
 import zw.co.blu.data.model.roles.RoleEntity
 import zw.co.blu.domain.model.roles.Role

@@ -1,6 +1,6 @@
 package zw.co.blu.data.mapper.permission
 
-import Mapper
+import zw.co.blu.data.mapper.Mapper
 import zw.co.blu.data.model.permissions.PermissionEntity
 import zw.co.blu.domain.model.permissions.Permission
 

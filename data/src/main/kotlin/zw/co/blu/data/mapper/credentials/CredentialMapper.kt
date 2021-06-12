@@ -1,6 +1,6 @@
 package zw.co.blu.data.mapper.credentials
 
-import Mapper
+import zw.co.blu.data.mapper.Mapper
 import zw.co.blu.data.model.credentials.CredentialsEntity
 import zw.co.blu.domain.model.credentials.Credentials
 

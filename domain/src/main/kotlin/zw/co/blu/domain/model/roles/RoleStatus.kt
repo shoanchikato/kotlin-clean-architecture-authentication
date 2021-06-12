@@ -10,4 +10,12 @@ sealed class RoleStatus {
             is INACTIVE -> "INACTIVE"
         }
     }
+
+    val value: Int
+    get(): Int {
+        return when(this) {
+            is ACTIVE -> 1
+            is INACTIVE -> 2
+        }
+    }
 }
