@@ -3,7 +3,7 @@ plugins {
 }
 
 ext {
-    exposed_version = '0.30.1'
+    exposed_version = '0.32.1'
     h2_version = '1.4.199'
     mysql_connector_version = '8.0.19'
     hikari_cp_version = '3.4.2'
@@ -15,6 +15,7 @@ dependencies {
 
     // database
     implementation"org.jetbrains.exposed:exposed-core:$exposed_version"
+    implementation"org.jetbrains.exposed:exposed-dao:$exposed_version"
     implementation"org.jetbrains.exposed:exposed-jdbc:$exposed_version"
     implementation "com.h2database:h2:$h2_version"
     implementation "mysql:mysql-connector-java:$mysql_connector_version"

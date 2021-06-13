@@ -11,6 +11,10 @@ plugins {
 //    id 'org.jetbrains.dokka'
 }
 
+ext {
+    logback_version = '1.2.3'
+}
+
 repositories {
     // Use mavenCentral for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -18,6 +22,7 @@ repositories {
 }
 
 dependencies {
+    implementation "ch.qos.logback:logback-classic:$logback_version"
     // Align versions of all Kotlin components
     implementation platform('org.jetbrains.kotlin:kotlin-bom')
 

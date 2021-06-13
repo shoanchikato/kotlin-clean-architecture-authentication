@@ -11,22 +11,21 @@ import zw.co.blu.data.model.roles.RoleEntity
 import zw.co.blu.domain.requestResult.RequestResult
 import zw.co.blu.exposed.sql.dao.mapper.roles.RoleEntityMapper
 import zw.co.blu.exposed.sql.dao.mapper.roles.RoleStatusMapper
-import zw.co.blu.exposed.sql.dao.tables.roles.RolesTable
-import zw.co.blu.exposed.sql.dao.tables.roles.toRole
+//import zw.co.blu.exposed.sql.dao.table.roles.toRole
 
 class RoleRepositoryImpl(private val databaseConnection: Database): RoleSqlDataSource {
     override suspend fun createRole(role: RoleDaoEntity): RequestResult<RoleEntity> = try {
-        transaction {
-            val roleId = RolesTable.insert {
-                it[name] = role.name
-                it[roleStatus] = RoleStatusMapper().toValue(role.roleStatus)
-            } get RolesTable.id
-
-            val roleModel = RolesTable.select { RolesTable.id eq roleId }.single().toRole()
-
-            RequestResult.Success(value = RoleEntityMapper().mapFromModel(roleModel))
-        }
-
+//        transaction {
+//            val roleId = RolesTable.insert {
+//                it[name] = role.name
+//                it[roleStatus] = RoleStatusMapper().toValue(role.roleStatus)
+//            } get RolesTable.id
+//
+//            val roleModel = RolesTable.select { RolesTable.id eq roleId }.single().toRole()
+//
+//            RequestResult.Success(value = RoleEntityMapper().mapFromModel(roleModel))
+//        }
+    TODO()
     } catch (e: Exception) {
         RequestResult.Error(exception = e)
     }

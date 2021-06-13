@@ -12,9 +12,11 @@ import zw.co.blu.domain.model.permissions.PermissionStatus
 import zw.co.blu.domain.requestResult.RequestResult
 import zw.co.blu.exposed.sql.dao.mapper.abilities.AbilitiesMapper
 import zw.co.blu.exposed.sql.dao.mapper.permissions.PermissionStatusMapper
-import zw.co.blu.exposed.sql.dao.tables.abilities.AbilitiesTable
-import zw.co.blu.exposed.sql.dao.tables.permissions.PermissionsTable
-import zw.co.blu.exposed.sql.dao.tables.permissionsAbilities.PermissionAbilitiesTable
+import zw.co.blu.exposed.sql.dao.table.abilities.AbilitiesEntity
+import zw.co.blu.exposed.sql.dao.table.abilities.AbilitiesTable
+import zw.co.blu.exposed.sql.dao.table.permissions.PermissionsEntity
+import zw.co.blu.exposed.sql.dao.table.permissions.PermissionsTable
+import zw.co.blu.exposed.sql.dao.table.permissionsAbilities.PermissionAbilitiesTable
 import kotlin.test.assertEquals
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -35,24 +37,33 @@ internal class PermissionsRepositoryImplTest {
             Ability.READ,
     )
 
-    private val permission = PermissionEntity(
+    private val input = PermissionEntity(
             name = "BOOKS",
             permissionStatus = PermissionStatus.ACTIVE,
             abilities = abilities,
     )
 
     private fun loadDatabase() {
-        val permissionId = PermissionsTable.insert {
-            it[name] = permission.name
-            it[permissionStatus] = PermissionStatusMapper().toValue(permission.permissionStatus)
-        } get PermissionsTable.id
-
-        permission.abilities.map { ability ->
-            PermissionAbilitiesTable.insert {
-                it[permission_id] = permissionId
-                it[abilities_id] = AbilitiesMapper().toValue(ability)
+        val permission = transaction {
+            PermissionsEntity.new {
+                name = input.name
+                permissionStatus = PermissionStatusMapper().toValue(input.permissionStatus)
             }
         }
+
+        val abilities = transaction {
+            input.abilities.map { ability ->
+                AbilitiesEntity.new {
+                    value = AbilitiesMapper().toValue(ability)
+                    name = ability.toString()
+                }
+            }
+        }
+
+        transaction {
+            permission.abilities = SizedCollection(abilities)
+        }
+
     }
 
     init {
@@ -66,7 +77,7 @@ internal class PermissionsRepositoryImplTest {
 
     @Test
     fun `get all when DB has one item`() {
-        val expected = RequestResult.Success(listOf(permission))
+        val expected = RequestResult.Success(listOf(input))
 
         runBlocking {
             assertEquals(expected, repository.getAllPermissions())
@@ -75,16 +86,16 @@ internal class PermissionsRepositoryImplTest {
 
     @Test
     fun `create a permission`() {
-        val expected = RequestResult.Success(permission)
+        val expected = RequestResult.Success(input)
 
         runBlocking {
-            assertEquals(expected, repository.createPermission(permission))
+            assertEquals(expected, repository.createPermission(input))
         }
     }
 
     @Test
     fun `deactivate a permission`() {
-        val deactivatedPermission = permission.copy(permissionStatus = PermissionStatus.INACTIVE)
+        val deactivatedPermission = input.copy(permissionStatus = PermissionStatus.INACTIVE)
 
         val input = "1"
         val expected = RequestResult.Success(deactivatedPermission)
