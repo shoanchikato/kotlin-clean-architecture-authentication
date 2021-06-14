@@ -6,6 +6,8 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import zw.co.blu.domain.model.roles.Role
+import zw.co.blu.domain.model.roles.RoleStatus
 import zw.co.blu.domain.model.users.User
 import zw.co.blu.domain.model.users.UserStatus
 import zw.co.blu.domain.requestResult.RequestResult
@@ -14,7 +16,7 @@ import zw.co.blu.domain.service.users.UserService
 internal class SuspendUserTest{
     private val userServiceMock: UserService = mockk()
 
-    private val role: String = "3"
+    private val role: Role = Role("1", "MANAGER", RoleStatus.ACTIVE, listOf())
     private val input: String = "1"
 
     private val output: User = User("", "", "", UserStatus.SUSPENDED, role)

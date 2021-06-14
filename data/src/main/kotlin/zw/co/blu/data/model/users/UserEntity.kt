@@ -1,5 +1,6 @@
 package zw.co.blu.data.model.users
 
+import zw.co.blu.data.model.roles.RoleEntity
 import zw.co.blu.domain.model.users.UserStatus
 
 /**
@@ -7,7 +8,8 @@ import zw.co.blu.domain.model.users.UserStatus
  * @property username eg "john_doe"
  * @property email eg "john_doe@company.com"
  * @property userStatus eg "ACTIVE"
- * @property roleId eg "1"
+ * @property role eg
+ * @see [RoleEntity]
  *
  */
 
@@ -16,5 +18,5 @@ data class UserEntity(
         val username: String,
         val email: String,
         val userStatus: UserStatus,
-        val roleId: String,
+        val role: RoleEntity,
 )

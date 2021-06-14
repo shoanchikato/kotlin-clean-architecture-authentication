@@ -6,6 +6,8 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import zw.co.blu.domain.model.roles.Role
+import zw.co.blu.domain.model.roles.RoleStatus
 import zw.co.blu.domain.model.users.User
 import zw.co.blu.domain.model.users.UserEditDao
 import zw.co.blu.domain.model.users.UserStatus
@@ -16,8 +18,9 @@ internal class EditUserTest {
     private val userServiceMock: UserService = mockk()
 
     private val inputId: String = "1"
-    private val role: String = "3"
-    private val inputValue: UserEditDao = UserEditDao(null, "", "", UserStatus.ACTIVE, role)
+    private val role: Role = Role("1", "MANAGER", RoleStatus.ACTIVE, listOf())
+    private val roleId: String = "1"
+    private val inputValue: UserEditDao = UserEditDao(null, "", "", UserStatus.ACTIVE, roleId)
 
     private val output: User = User("1", "", "", UserStatus.ACTIVE, role)
 

@@ -12,9 +12,7 @@ import zw.co.blu.domain.model.users.UserStatus
  */
 
 data class UserDaoModel(
-        val id: String?,
         val username: String,
         val email: String,
-        val userStatus: UserStatus,
         val roleId: String,
 )

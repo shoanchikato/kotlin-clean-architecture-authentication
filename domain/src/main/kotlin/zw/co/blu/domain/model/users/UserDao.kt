@@ -10,9 +10,7 @@ package zw.co.blu.domain.model.users
  */
 
 data class UserDao(
-        val id: String?,
         val username: String,
         val email: String,
-        val userStatus: UserStatus,
         val roleId: String,
 )

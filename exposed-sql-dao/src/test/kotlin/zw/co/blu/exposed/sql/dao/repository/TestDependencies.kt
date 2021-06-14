@@ -6,9 +6,12 @@ import zw.co.blu.data.model.permissions.PermissionEntity
 import zw.co.blu.data.model.roles.RoleDaoEntity
 import zw.co.blu.data.model.roles.RoleEditDaoEntity
 import zw.co.blu.data.model.roles.RoleEntity
+import zw.co.blu.data.model.users.UserDaoEntity
+import zw.co.blu.data.model.users.UserEntity
 import zw.co.blu.domain.model.permissions.PermissionStatus
 import zw.co.blu.domain.model.privileges.Privileges
 import zw.co.blu.domain.model.roles.RoleStatus
+import zw.co.blu.domain.model.users.UserStatus
 import zw.co.blu.exposed.sql.dao.mapper.permissions.PermissionStatusMapper
 import zw.co.blu.exposed.sql.dao.mapper.privileges.PrivilegesMapper
 import zw.co.blu.exposed.sql.dao.mapper.roles.RoleStatusMapper
@@ -95,6 +98,21 @@ class TestDependencies {
         )
 
         private val inputPermissions = listOf(permission2, permission3, roleInput.permissions.first())
+
+        // USERS
+        val userInput = UserDaoEntity(
+                username = "john_doe",
+                email = "john@doe.com",
+                roleId = "1",
+        )
+
+        val userOutput = UserEntity(
+                id = "1",
+                username = userInput.username,
+                email = userInput.email,
+                userStatus = UserStatus.ACTIVE,
+                role = roleOutput
+        )
 
         // LOADERS
 
@@ -193,6 +211,14 @@ class TestDependencies {
 
             transaction {
                 roleDao.permissions = SizedCollection(permissions)
+            }
+
+            fun loadUsers() {
+                loadRoles()
+
+                transaction {
+
+                }
             }
 
         }
