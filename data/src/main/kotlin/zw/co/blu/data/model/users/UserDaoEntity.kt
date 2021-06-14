@@ -1,7 +1,5 @@
 package zw.co.blu.data.model.users
 
-import zw.co.blu.domain.model.users.UserStatus
-
 /**
  * @property username eg "john_doe"
  * @property email eg "john_doe@company.com"

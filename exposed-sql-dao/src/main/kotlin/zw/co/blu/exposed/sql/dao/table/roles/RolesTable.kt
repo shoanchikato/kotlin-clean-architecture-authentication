@@ -8,6 +8,8 @@ import zw.co.blu.data.model.roles.RoleEntity
 import zw.co.blu.exposed.sql.dao.mapper.roles.RoleStatusMapper
 import zw.co.blu.exposed.sql.dao.table.permissions.PermissionsEntity
 import zw.co.blu.exposed.sql.dao.table.rolePermissions.RolePermissionsTable
+import zw.co.blu.exposed.sql.dao.table.users.UsersEntity
+import zw.co.blu.exposed.sql.dao.table.users.UsersTable
 
 object RolesTable : IntIdTable() {
     val name = varchar("name", 255)
@@ -22,6 +24,7 @@ class RolesEntity(id: EntityID<Int>) : IntEntity(id) {
     var name by RolesTable.name
     var roleStatus by RolesTable.roleStatus
     var permissions by PermissionsEntity via RolePermissionsTable
+    val user by UsersEntity referrersOn UsersTable.role
 
     fun toDataEntity() = RoleEntity(
             id = this.id.toString(),

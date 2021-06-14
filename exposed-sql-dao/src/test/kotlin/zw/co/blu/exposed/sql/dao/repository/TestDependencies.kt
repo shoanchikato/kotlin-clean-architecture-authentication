@@ -7,6 +7,7 @@ import zw.co.blu.data.model.roles.RoleDaoEntity
 import zw.co.blu.data.model.roles.RoleEditDaoEntity
 import zw.co.blu.data.model.roles.RoleEntity
 import zw.co.blu.data.model.users.UserDaoEntity
+import zw.co.blu.data.model.users.UserEditDaoEntity
 import zw.co.blu.data.model.users.UserEntity
 import zw.co.blu.domain.model.permissions.PermissionStatus
 import zw.co.blu.domain.model.privileges.Privileges
@@ -15,6 +16,7 @@ import zw.co.blu.domain.model.users.UserStatus
 import zw.co.blu.exposed.sql.dao.mapper.permissions.PermissionStatusMapper
 import zw.co.blu.exposed.sql.dao.mapper.privileges.PrivilegesMapper
 import zw.co.blu.exposed.sql.dao.mapper.roles.RoleStatusMapper
+import zw.co.blu.exposed.sql.dao.mapper.users.UserStatusMapper
 import zw.co.blu.exposed.sql.dao.table.permissions.PermissionsEntity
 import zw.co.blu.exposed.sql.dao.table.permissions.PermissionsTable
 import zw.co.blu.exposed.sql.dao.table.permissionsPrivileges.PermissionPrivilegesTable
@@ -23,6 +25,8 @@ import zw.co.blu.exposed.sql.dao.table.privileges.PrivilegesTable
 import zw.co.blu.exposed.sql.dao.table.rolePermissions.RolePermissionsTable
 import zw.co.blu.exposed.sql.dao.table.roles.RolesEntity
 import zw.co.blu.exposed.sql.dao.table.roles.RolesTable
+import zw.co.blu.exposed.sql.dao.table.users.UsersEntity
+import zw.co.blu.exposed.sql.dao.table.users.UsersTable
 
 class TestDependencies {
     companion object {
@@ -33,6 +37,28 @@ class TestDependencies {
                     user = "root",
                     password = ""
             )
+        }
+
+        private fun createTables() {
+            transaction {
+                addLogger(StdOutSqlLogger)
+                SchemaUtils.drop(
+                        PermissionsTable,
+                        PrivilegesTable,
+                        PermissionPrivilegesTable,
+                        RolesTable,
+                        RolePermissionsTable,
+                        UsersTable,
+                )
+                SchemaUtils.create(
+                        PermissionsTable,
+                        PrivilegesTable,
+                        PermissionPrivilegesTable,
+                        RolesTable,
+                        RolePermissionsTable,
+                        UsersTable,
+                )
+            }
         }
 
         // PERMISSIONS
@@ -107,21 +133,33 @@ class TestDependencies {
         )
 
         val userOutput = UserEntity(
-                id = "1",
+                id = "2",
                 username = userInput.username,
                 email = userInput.email,
                 userStatus = UserStatus.ACTIVE,
-                role = roleOutput
+                role = roleOutput.copy(id = "1")
+        )
+
+        val userEditInput = UserEditDaoEntity(
+                id = "1",
+                username = "jane_doe",
+                email = "john@doe.com",
+                userStatus = UserStatus.ACTIVE,
+                roleId = "1",
+        )
+
+        val userEditOutput = UserEntity(
+                id = "1",
+                username = userEditInput.username!!,
+                email = userEditInput.email!!,
+                userStatus = UserStatus.ACTIVE,
+                role = roleOutput.copy(id = "1")
         )
 
         // LOADERS
 
         fun loadPermissions() {
-            transaction {
-                addLogger(StdOutSqlLogger)
-                SchemaUtils.drop(PermissionsTable, PrivilegesTable, PermissionPrivilegesTable)
-                SchemaUtils.create(PermissionsTable, PrivilegesTable, PermissionPrivilegesTable)
-            }
+            createTables()
 
             val permission = transaction {
                 PermissionsEntity.new {
@@ -146,11 +184,7 @@ class TestDependencies {
         }
 
         fun loadRoles() {
-            transaction {
-                addLogger(StdOutSqlLogger)
-                SchemaUtils.drop(PermissionsTable, PrivilegesTable, PermissionPrivilegesTable, RolesTable, RolePermissionsTable)
-                SchemaUtils.create(PermissionsTable, PrivilegesTable, PermissionPrivilegesTable, RolesTable, RolePermissionsTable)
-            }
+            createTables()
 
             // val roleDao =
             val roleDao = transaction {
@@ -213,14 +247,25 @@ class TestDependencies {
                 roleDao.permissions = SizedCollection(permissions)
             }
 
-            fun loadUsers() {
-                loadRoles()
 
-                transaction {
 
-                }
+        }
+
+        fun loadUsers() {
+            loadRoles()
+
+            val roleDao = transaction {
+                RolesEntity.findById(1) ?: throw Exception("Error loading test data role")
             }
 
+            transaction {
+                UsersEntity.new {
+                    username = userInput.username
+                    email = userInput.email
+                    userStatus = UserStatusMapper().toValue(UserStatus.ACTIVE)
+                    role = roleDao
+                }
+            }
         }
     }
 }

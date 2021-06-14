@@ -1,7 +1,5 @@
 package zw.co.blu.exposed.sql.dao.model.users
 
-import zw.co.blu.domain.model.users.UserStatus
-
 /**
  * @property id eg UUID or Long, type String is more flexible
  * @property username eg "john_doe"

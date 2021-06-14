@@ -43,13 +43,13 @@ class PermissionsRepositoryImpl(private val databaseConnection: Database) : Perm
             }
         }
 
-        val permission = transaction {
+        val result = transaction {
             permissionDao.privileges = SizedCollection(privileges)
 
             permissionDao.toDataEntity()
         }
 
-        RequestResult.Success(value = permission)
+        RequestResult.Success(value = result)
 
     } catch (e: Exception) {
         RequestResult.Error(exception = e)
