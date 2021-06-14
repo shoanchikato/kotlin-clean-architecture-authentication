@@ -7,17 +7,19 @@ import zw.co.blu.exposed.sql.dao.model.permissions.PermissionModel
 class PermissionEntityMapper (): Mapper<PermissionModel, PermissionEntity> {
     override fun mapFromModel(type: PermissionModel): PermissionEntity {
         return PermissionEntity(
+                id = type.id,
                 name = type.name,
                 permissionStatus = type.permissionStatus,
-                abilities = type.abilities,
+                privileges = type.privileges,
         )
     }
 
     override fun mapToModel(type: PermissionEntity): PermissionModel {
         return PermissionModel(
+                id = type.id,
                 name = type.name,
                 permissionStatus = type.permissionStatus,
-                abilities = type.abilities,
+                privileges = type.privileges,
         )
     }
 }

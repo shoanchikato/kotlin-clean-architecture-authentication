@@ -12,13 +12,13 @@ import zw.co.blu.domain.model.roles.RoleStatus
  * ```json
  * [
  *  {   "name": "BOOKS",
- *      "abilities": [
+ *      "privileges": [
  *          "READ",
  *          "EDIT"
  *      ]
  *  },
  *  {   "name": "TASKS",
- *      "abilities": [
+ *      "privileges": [
  *          "READ"
  *      ]
  *  }

@@ -12,13 +12,13 @@ import zw.co.blu.exposed.sql.dao.model.permissions.PermissionModel
  * ```json
  * [
  *  {   "name": "BOOKS",
- *      "abilities": [
+ *      "privileges": [
  *          "READ",
  *          "EDIT"
  *      ]
  *  },
  *  {   "name": "TASKS",
- *      "abilities": [
+ *      "privileges": [
  *          "READ"
  *      ]
  *  }

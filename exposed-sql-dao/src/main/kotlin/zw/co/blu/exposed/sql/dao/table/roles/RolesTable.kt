@@ -1,21 +1,32 @@
 package zw.co.blu.exposed.sql.dao.table.roles
 
-import org.jetbrains.exposed.sql.Table
-//import zw.co.blu.exposed.sql.dao.table.rolesPermissions.RolesPermissionsTable
+import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
+import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.dao.id.IntIdTable
+import zw.co.blu.data.model.roles.RoleEntity
+import zw.co.blu.exposed.sql.dao.mapper.roles.RoleStatusMapper
+import zw.co.blu.exposed.sql.dao.table.permissions.PermissionsEntity
+import zw.co.blu.exposed.sql.dao.table.rolePermissions.RolePermissionsTable
 
-//object RolesTable : Table() {
-//    val id = integer("id").autoIncrement()
-//    val name = varchar("name", 255)
-//    val roleStatus = integer("roleStatus")
-//    val roles_permissions_id = (integer("roles_permissions_id") references RolesPermissionsTable.id).nullable()
-//
-//    override val primaryKey = PrimaryKey(id, name = "PK_Roles_ID")
-//}
+object RolesTable : IntIdTable() {
+    val name = varchar("name", 255)
+    val roleStatus = integer("roleStatus")
 
+    override val primaryKey = PrimaryKey(id, name = "PK_Roles_ID")
+}
 
-//data class RoleModel(
-//        val id: String,
-//        val name: String,
-//        val roleStatus: RoleStatus,
-//        val permissions: List<PermissionModel>,
-//)
+class RolesEntity(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<RolesEntity>(RolesTable)
+
+    var name by RolesTable.name
+    var roleStatus by RolesTable.roleStatus
+    var permissions by PermissionsEntity via RolePermissionsTable
+
+    fun toDataEntity() = RoleEntity(
+            id = this.id.toString(),
+            name = this.name,
+            roleStatus = RoleStatusMapper().fromValue(this.roleStatus),
+            permissions = this.permissions.map { it.toDataEntity() }
+    )
+}

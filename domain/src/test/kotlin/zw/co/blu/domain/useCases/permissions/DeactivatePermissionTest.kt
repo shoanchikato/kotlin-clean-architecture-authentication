@@ -4,20 +4,19 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import zw.co.blu.domain.model.permissions.Permission
 import zw.co.blu.domain.model.permissions.PermissionStatus
 import zw.co.blu.domain.requestResult.RequestResult
 import zw.co.blu.domain.service.permissions.PermissionService
-import java.lang.Exception
 
 internal class DeactivatePermissionTest {
     private val permissionServiceMock: PermissionService = mockk()
 
     private val input: String = "1"
 
-    private val output: Permission = Permission("", PermissionStatus.INACTIVE, listOf())
+    private val output: Permission = Permission("", "", PermissionStatus.INACTIVE, listOf())
 
     @Test
     fun `it should return successful response`() {

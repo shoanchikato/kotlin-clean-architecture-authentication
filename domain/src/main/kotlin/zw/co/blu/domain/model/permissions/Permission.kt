@@ -1,14 +1,15 @@
 package zw.co.blu.domain.model.permissions
 
-import zw.co.blu.domain.model.abilities.Ability
+import zw.co.blu.domain.model.privileges.Privileges
 
 /**
  * @property name eg "BOOKS"
  * @property permissionStatus eg "ACTIVE"
- * @property abilities eg ["READ", "EDIT"]
+ * @property privileges eg ["READ", "EDIT"]
  */
 data class Permission(
+        val id: String,
         val name: String,
         val permissionStatus: PermissionStatus,
-        val abilities: List<Ability>,
+        val privileges: List<Privileges>,
 )

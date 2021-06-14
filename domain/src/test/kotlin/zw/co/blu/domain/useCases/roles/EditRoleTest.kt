@@ -4,14 +4,13 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import zw.co.blu.domain.model.roles.Role
 import zw.co.blu.domain.model.roles.RoleEditDao
 import zw.co.blu.domain.model.roles.RoleStatus
 import zw.co.blu.domain.requestResult.RequestResult
 import zw.co.blu.domain.service.roles.RoleService
-import java.lang.Exception
 
 internal class EditRoleTest {
     private val roleServiceMock: RoleService = mockk()

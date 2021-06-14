@@ -6,9 +6,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import zw.co.blu.domain.model.abilities.Ability
-import zw.co.blu.domain.model.permissions.Permission
-import zw.co.blu.domain.model.permissions.PermissionStatus
+import zw.co.blu.domain.model.privileges.Privileges
 import zw.co.blu.domain.model.roles.Role
 import zw.co.blu.domain.model.roles.RoleDao
 import zw.co.blu.domain.model.roles.RoleStatus
@@ -18,10 +16,10 @@ import zw.co.blu.domain.service.roles.RoleService
 internal class CreateRoleTest {
     private val roleServiceMock: RoleService = mockk()
 
-    private val abilities: List<Ability> = listOf(Ability.CREATE, Ability.EDIT)
-    private val permissions: List<Permission> = listOf(Permission("BOOKS", PermissionStatus.ACTIVE, abilities))
+    private val privileges: List<Privileges> = listOf(Privileges.CREATE, Privileges.EDIT)
+    private val permissions: List<String> = listOf("1")
 
-    private val input: RoleDao = RoleDao("", "", RoleStatus.ACTIVE, permissions)
+    private val input: RoleDao = RoleDao("", permissions)
 
     private val output: Role = Role("", "", RoleStatus.ACTIVE, listOf())
 

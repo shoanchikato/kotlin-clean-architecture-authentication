@@ -7,7 +7,8 @@ import zw.co.blu.domain.requestResult.RequestResult
 
 interface RoleSqlDataSource {
     suspend fun createRole(role: RoleDaoEntity): RequestResult<RoleEntity>
-    suspend fun getRole(id: String): RequestResult<RoleEntity>
+    suspend fun getRoleById(id: String): RequestResult<RoleEntity>
+    suspend fun getAllRoles(): RequestResult<List<RoleEntity>>
     suspend fun editRole(id: String, role: RoleEditDaoEntity): RequestResult<RoleEntity>
     suspend fun deactivateRole(id: String): RequestResult<RoleEntity>
 }

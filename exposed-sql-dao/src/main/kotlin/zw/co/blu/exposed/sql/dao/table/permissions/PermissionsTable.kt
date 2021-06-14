@@ -4,10 +4,10 @@ import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
+import zw.co.blu.data.model.permissions.PermissionEntity
 import zw.co.blu.exposed.sql.dao.mapper.permissions.PermissionStatusMapper
-import zw.co.blu.exposed.sql.dao.model.permissions.PermissionModel
-import zw.co.blu.exposed.sql.dao.table.abilities.AbilitiesEntity
-import zw.co.blu.exposed.sql.dao.table.permissionsAbilities.PermissionAbilitiesTable
+import zw.co.blu.exposed.sql.dao.table.permissionsPrivileges.PermissionPrivilegesTable
+import zw.co.blu.exposed.sql.dao.table.privileges.PrivilegesEntity
 
 object PermissionsTable : IntIdTable() {
     val name = varchar("name", 255)
@@ -21,12 +21,12 @@ class PermissionsEntity(id: EntityID<Int>) : IntEntity(id) {
 
     var name by PermissionsTable.name
     var permissionStatus by PermissionsTable.permissionStatus
+    var privileges by PrivilegesEntity via PermissionPrivilegesTable
 
-    var abilities by AbilitiesEntity via PermissionAbilitiesTable
-
-    fun toModel() = PermissionModel(
+    fun toDataEntity() = PermissionEntity(
+            id = this.id.toString(),
             name = this.name,
             permissionStatus = PermissionStatusMapper().fromValue(this.permissionStatus),
-            abilities = this.abilities.map { it.toModel() }
+            privileges = this.privileges.map { it.fromValue() }
     )
 }

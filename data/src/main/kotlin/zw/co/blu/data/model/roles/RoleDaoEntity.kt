@@ -1,8 +1,5 @@
 package zw.co.blu.data.model.roles
 
-import zw.co.blu.data.model.permissions.PermissionEntity
-import zw.co.blu.domain.model.roles.RoleStatus
-
 /**
  * @property id eg "3"
  * @property name eg "ADMIN", "ACCOUNT MANAGER"
@@ -12,13 +9,13 @@ import zw.co.blu.domain.model.roles.RoleStatus
  * ```json
  * [
  *  {   "name": "BOOKS",
- *      "abilities": [
+ *      "privileges": [
  *          "READ",
  *          "EDIT"
  *      ]
  *  },
  *  {   "name": "TASKS",
- *      "abilities": [
+ *      "privileges": [
  *          "READ"
  *      ]
  *  }
@@ -26,8 +23,6 @@ import zw.co.blu.domain.model.roles.RoleStatus
  * ```
  */
 data class RoleDaoEntity(
-        val id: String?,
         val name: String,
-        val roleStatus: RoleStatus,
-        val permissions: List<PermissionEntity>,
+        val permissionIds: List<String>,
 )

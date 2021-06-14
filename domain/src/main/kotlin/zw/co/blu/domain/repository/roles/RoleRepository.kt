@@ -7,7 +7,8 @@ import zw.co.blu.domain.requestResult.RequestResult
 
 interface RoleRepository {
     suspend fun createRole(role: RoleDao): RequestResult<Role>
-    suspend fun getRole(id: String): RequestResult<Role>
+    suspend fun getRoleById(id: String): RequestResult<Role>
+    suspend fun getAllRoles(): RequestResult<List<Role>>
     suspend fun editRole(id: String, role: RoleEditDao): RequestResult<Role>
     suspend fun deactivateRole(id: String): RequestResult<Role>
 }

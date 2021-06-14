@@ -1,26 +1,25 @@
 package zw.co.blu.exposed.sql.dao.mapper.roles
 
-import zw.co.blu.data.model.roles.RoleDaoEntity
+import zw.co.blu.data.model.roles.RoleEditDaoEntity
 import zw.co.blu.exposed.sql.dao.mapper.Mapper
-import zw.co.blu.exposed.sql.dao.mapper.permissions.PermissionEntityMapper
-import zw.co.blu.exposed.sql.dao.model.roles.RoleDaoModel
+import zw.co.blu.exposed.sql.dao.model.roles.RoleEditDaoModel
 
-class RoleEditDaoEntityMapper (): Mapper<RoleDaoEntity, RoleDaoModel> {
-    override fun mapFromModel(type: RoleDaoEntity): RoleDaoModel {
-        return RoleDaoModel(
+class RoleEditDaoEntityMapper (): Mapper<RoleEditDaoModel, RoleEditDaoEntity> {
+    override fun mapFromModel(type: RoleEditDaoModel): RoleEditDaoEntity {
+        return RoleEditDaoEntity(
                 id = type.id,
                 name = type.name,
                 roleStatus = type.roleStatus,
-                permissions = type.permissions.map { PermissionEntityMapper().mapToModel(it) },
+                permissionIds = type.permissionIds,
         )
     }
 
-    override fun mapToModel(type: RoleDaoModel): RoleDaoEntity {
-        return RoleDaoEntity(
+    override fun mapToModel(type: RoleEditDaoEntity): RoleEditDaoModel {
+        return RoleEditDaoModel(
                 id = type.id,
                 name = type.name,
                 roleStatus = type.roleStatus,
-                permissions = type.permissions.map { PermissionEntityMapper().mapFromModel(it) },
+                permissionIds = type.permissionIds,
         )
     }
 }

@@ -4,15 +4,14 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import zw.co.blu.domain.model.roles.Role
 import zw.co.blu.domain.model.roles.RoleStatus
 import zw.co.blu.domain.requestResult.RequestResult
 import zw.co.blu.domain.service.roles.RoleService
-import java.lang.Exception
 
-internal class GetRoleTest {
+internal class GetRoleByIdTest {
     private val roleServiceMock: RoleService = mockk()
 
     private val inputId: String = "1"
@@ -24,13 +23,13 @@ internal class GetRoleTest {
 
         val expected: RequestResult.Success<Role> = RequestResult.Success(output)
 
-        coEvery { roleServiceMock.getRole(any()) } returns expected
+        coEvery { roleServiceMock.getRoleById(any()) } returns expected
 
-        val sut = GetRole(roleServiceMock)
+        val sut = GetRoleById(roleServiceMock)
 
         runBlocking { assertEquals(expected, sut.invoke(inputId)) }
 
-        coVerify { roleServiceMock.getRole(any()) }
+        coVerify { roleServiceMock.getRoleById(any()) }
     }
 
     @Test
@@ -38,12 +37,12 @@ internal class GetRoleTest {
 
         val expected: RequestResult.Error<Role> = RequestResult.Error(Exception("testing exception"))
 
-        coEvery { roleServiceMock.getRole(any()) } returns expected
+        coEvery { roleServiceMock.getRoleById(any()) } returns expected
 
-        val sut = GetRole(roleServiceMock)
+        val sut = GetRoleById(roleServiceMock)
 
         runBlocking { assertEquals(expected, sut.invoke(inputId)) }
 
-        coVerify { roleServiceMock.getRole(any()) }
+        coVerify { roleServiceMock.getRoleById(any()) }
     }
 }

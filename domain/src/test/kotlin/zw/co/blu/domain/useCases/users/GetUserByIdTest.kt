@@ -4,14 +4,14 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import zw.co.blu.domain.model.users.User
 import zw.co.blu.domain.model.users.UserStatus
 import zw.co.blu.domain.requestResult.RequestResult
 import zw.co.blu.domain.service.users.UserService
 
-internal class GetUserTest{
+internal class GetUserByIdTest{
     private val userServiceMock: UserService = mockk()
 
     private val role: String = "3"
@@ -24,13 +24,13 @@ internal class GetUserTest{
 
         val expected: RequestResult.Success<User> = RequestResult.Success(output)
 
-        coEvery { userServiceMock.getUser(any()) } returns expected
+        coEvery { userServiceMock.getUserById(any()) } returns expected
 
-        val sut = GetUser(userServiceMock)
+        val sut = GetUserById(userServiceMock)
 
         runBlocking { assertEquals(expected, sut.invoke(input)) }
 
-        coVerify { userServiceMock.getUser(any()) }
+        coVerify { userServiceMock.getUserById(any()) }
     }
 
     @Test
@@ -38,12 +38,12 @@ internal class GetUserTest{
 
         val expected: RequestResult.Error<User> = RequestResult.Error(Exception("testing exception"))
 
-        coEvery { userServiceMock.getUser(any()) } returns expected
+        coEvery { userServiceMock.getUserById(any()) } returns expected
 
-        val sut = GetUser(userServiceMock)
+        val sut = GetUserById(userServiceMock)
 
         runBlocking { assertEquals(expected, sut.invoke(input)) }
 
-        coVerify { userServiceMock.getUser(any()) }
+        coVerify { userServiceMock.getUserById(any()) }
     }
 }

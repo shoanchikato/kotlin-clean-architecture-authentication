@@ -1,14 +1,14 @@
-package zw.co.blu.domain.model.abilities
+package zw.co.blu.domain.model.privileges
 
-sealed class Ability {
-    object CREATE: Ability()
-    object READ: Ability()
-    object EDIT: Ability()
-    object DELETE: Ability()
-    object ACTIVATE: Ability()
-    object DEACTIVATE: Ability()
-    object SUSPEND: Ability()
-    object BAN: Ability()
+sealed class Privileges {
+    object CREATE: Privileges()
+    object READ: Privileges()
+    object EDIT: Privileges()
+    object DELETE: Privileges()
+    object ACTIVATE: Privileges()
+    object DEACTIVATE: Privileges()
+    object SUSPEND: Privileges()
+    object BAN: Privileges()
 
     override fun toString(): String {
         return when(this) {

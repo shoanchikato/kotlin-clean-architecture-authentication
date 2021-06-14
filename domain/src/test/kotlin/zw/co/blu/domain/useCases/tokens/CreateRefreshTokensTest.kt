@@ -10,7 +10,7 @@ import zw.co.blu.domain.model.tokens.Tokens
 import zw.co.blu.domain.requestResult.RequestResult
 import zw.co.blu.domain.service.tokens.TokensService
 
-internal class CreateCreateRefreshTokensTest {
+internal class CreateRefreshTokensTest {
     private val tokenServiceMock: TokensService = mockk()
 
     private val input: String = "refresh-token"

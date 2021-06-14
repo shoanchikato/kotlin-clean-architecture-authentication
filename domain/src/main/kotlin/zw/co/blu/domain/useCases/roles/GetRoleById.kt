@@ -4,8 +4,8 @@ import zw.co.blu.domain.model.roles.Role
 import zw.co.blu.domain.requestResult.RequestResult
 import zw.co.blu.domain.service.roles.RoleService
 
-class DeactivateRole(private val roleService: RoleService) {
+class GetRoleById(private val roleService: RoleService) {
     suspend operator fun invoke(id: String): RequestResult<Role> {
-        return roleService.deactivateRole(id)
+        return roleService.getRoleById(id)
     }
 }

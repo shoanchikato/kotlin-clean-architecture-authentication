@@ -4,7 +4,7 @@ import zw.co.blu.data.mapper.Mapper
 import zw.co.blu.data.model.credentials.CredentialsEntity
 import zw.co.blu.domain.model.credentials.Credentials
 
-class CredentialsMapper (): Mapper<CredentialsEntity, Credentials> {
+class CredentialMapper (): Mapper<CredentialsEntity, Credentials> {
     override fun mapFromEntity(type: CredentialsEntity): Credentials {
         return Credentials(
                 username = type.username,

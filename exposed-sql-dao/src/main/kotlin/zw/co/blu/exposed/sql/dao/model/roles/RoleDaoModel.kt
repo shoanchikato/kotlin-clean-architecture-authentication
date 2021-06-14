@@ -1,8 +1,5 @@
 package zw.co.blu.exposed.sql.dao.model.roles
 
-import zw.co.blu.domain.model.roles.RoleStatus
-import zw.co.blu.exposed.sql.dao.model.permissions.PermissionModel
-
 
 /**
  * @property id eg "3"
@@ -13,13 +10,13 @@ import zw.co.blu.exposed.sql.dao.model.permissions.PermissionModel
  * ```json
  * [
  *  {   "name": "BOOKS",
- *      "abilities": [
+ *      "privileges": [
  *          "READ",
  *          "EDIT"
  *      ]
  *  },
  *  {   "name": "TASKS",
- *      "abilities": [
+ *      "privileges": [
  *          "READ"
  *      ]
  *  }
@@ -27,8 +24,6 @@ import zw.co.blu.exposed.sql.dao.model.permissions.PermissionModel
  * ```
  */
 data class RoleDaoModel(
-        val id: String?,
         val name: String,
-        val roleStatus: RoleStatus,
-        val permissions: List<PermissionModel>,
+        val permissionIds: List<String>,
 )
